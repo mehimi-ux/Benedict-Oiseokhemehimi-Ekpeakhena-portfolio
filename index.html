@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benedict Ekpeakhena | Law Student • Creative • Brand Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ============================================
+           BENEDICT EKPEAKHENA PORTFOLIO STYLES
+           Color Scheme: Deep Navy, Midnight Blue, 
+           Charcoal, Cool Grey, Soft Cyan Accents
+           ============================================ */
+        
+        :root {
+            /* EDITABLE: Color Variables - Change these to update entire theme */
+            --deep-navy: #0a1628;
+            --midnight-blue: #0f1b2e;
+            --charcoal: #1e293b;
+            --cool-grey: #64748b;
+            --soft-cyan: #22d3ee;
+            --glow-cyan: rgba(34, 211, 238, 0.3);
+            --glass-bg: rgba(15, 27, 46, 0.7);
+            --glass-border: rgba(34, 211, 238, 0.1);
+            
+            /* Typography */
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Spacing */
+            --section-padding: 6rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--deep-navy);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           LOADING ANIMATION
+           ============================================ */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--deep-navy);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--soft-cyan), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 2px;
+            background: var(--charcoal);
+            margin-top: 1rem;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loader-progress {
+            height: 100%;
+            background: var(--soft-cyan);
+            width: 0%;
+            animation: loadProgress 2s ease-out forwards;
+            box-shadow: 0 0 10px var(--soft-cyan);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* ============================================
+           SCROLL PROGRESS INDICATOR
+           ============================================ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--soft-cyan), #67e8f9);
+            z-index: 9998;
+            width: 0%;
+            box-shadow: 0 0 10px var(--soft-cyan);
+        }
+
+        /* ============================================
+           CUSTOM CURSOR GLOW EFFECT
+           ============================================ */
+        .cursor-glow {
+            width: 20px;
+            height: 20px;
+            background: var(--soft-cyan);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 0 20px var(--soft-cyan), 0 0 40px var(--soft-cyan);
+            mix-blend-mode: screen;
+        }
+
+        body:hover .cursor-glow {
+            opacity: 0.5;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 5%;
+            background: rgba(10, 22, 40, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--soft-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cool-grey);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--soft-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--soft-cyan);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 5%;
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--soft-cyan);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Gradient Orbs */
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: orbMove 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--soft-cyan);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: #3b82f6;
+            bottom: 10%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes orbMove {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(30px, 50px) scale(1.05); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--soft-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.5s;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.7s;
+        }
+
+        .hero-title .line {
+            display: block;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--soft-cyan), #67e8f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--cool-grey);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.9s;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 1.1s;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--soft-cyan);
+            color: var(--deep-navy);
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(34, 211, 238, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--soft-cyan);
+            background: rgba(34, 211, 238, 0.1);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           SECTION STYLES
+           ============================================ */
+        section {
+            padding: var(--section-padding) 5%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-tag {
+            font-family: var(--font-display);
+            font-size: 0.875rem;
+            color: var(--soft-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about {
+            background: linear-gradient(180deg, var(--deep-navy) 0%, var(--midnight-blue) 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* EDITABLE: Profile Image Placeholder */
+        .about-image {
+            position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-image.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .image-frame {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--charcoal);
+            aspect-ratio: 3/4;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* PLACEHOLDER: Replace src with your image path */
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-frame:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-glow {
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--soft-cyan), transparent);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(20px);
+        }
+
+        .about-content {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-content.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .about-headline {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .about-headline span {
+            color: var(--soft-cyan);
+        }
+
+        .about-text {
+            color: var(--cool-grey);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--soft-cyan);
+            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.1);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--soft-cyan);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--cool-grey);
+            margin-top: 0.5rem;
+        }
+
+        /* ============================================
+           SKILLS SECTION
+           ============================================ */
+        .skills {
+            background: var(--midnight-blue);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .skill-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(34, 211, 238, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--soft-cyan);
+            box-shadow: 0 20px 40px rgba(34, 211, 238, 0.15);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(34, 211, 238, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--soft-cyan);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover .skill-icon {
+            background: var(--soft-cyan);
+            color: var(--deep-navy);
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .skill-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
+
+        .skill-description {
+            color: var(--cool-grey);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* EDITABLE: Skill Image Placeholder */
+        .skill-image {
+            width: 100%;
+            height: 150px;
+            background: var(--charcoal);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        /* PLACEHOLDER: Replace src with your skill image */
+        .skill-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .skill-card:hover .skill-image img {
+            transform: scale(1.1);
+        }
+
+        .skill-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--soft-cyan);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: gap 0.3s ease;
+        }
+
+        .skill-link:hover {
+            gap: 1rem;
+        }
+
+        /* Special styling for Writing card link */
+        .writing-link {
+            background: rgba(34, 211, 238, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--soft-cyan);
+        }
+
+        .writing-link:hover {
+            background: var(--soft-cyan);
+            color: var(--deep-navy);
+        }
+
+        /* ============================================
+           SOCIAL SECTION
+           ============================================ */
+        .social {
+            background: var(--deep-navy);
+            text-align: center;
+            padding-bottom: 4rem;
+        }
+
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .social-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            min-width: 200px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .social-card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--soft-cyan);
+            box-shadow: 0 0 40px rgba(34, 211, 238, 0.2);
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--soft-cyan), transparent);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-card:hover .social-icon::before {
+            opacity: 1;
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
+        }
+
+        /* Platform specific colors */
+        .linkedin .social-icon { background: #0077b5; color: white; }
+        .tiktok .social-icon { background: #000; color: #fff; border: 1px solid var(--glass-border); }
+        .whatsapp .social-icon { background: #25d366; color: white; }
+        .instagram .social-icon { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
+        .facebook .social-icon { background: #1877f2; color: white; }
+
+        .social-name {
+            font-family: var(--font-display);
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-handle {
+            font-size: 0.875rem;
+            color: var(--cool-grey);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .social-link {
+            color: var(--soft-cyan);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .social-card:hover .social-link {
+            gap: 0.75rem;
+        }
+
+        /* TikTok Slots Grid */
+        .tiktok-slots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tiktok-slot {
+            background: rgba(255,255,255,0.05);
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: var(--cool-grey);
+            border: 1px dashed var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .tiktok-slot:hover {
+            border-color: var(--soft-cyan);
+            color: var(--soft-cyan);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--charcoal);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--soft-cyan);
+        }
+
+        .footer-text {
+            color: var(--cool-grey);
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--cool-grey);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--soft-cyan);
+        }
+
+        .copyright {
+            color: var(--cool-grey);
+            font-size: 0.875rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* ============================================
+           BACK TO TOP BUTTON
+           ============================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-cyan);
+            font-size: 1.25rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--soft-cyan);
+            color: var(--deep-navy);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 968px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image {
+                order: -1;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --section-padding: 4rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+        }
+
+        /* Image placeholder styling */
+        .img-placeholder {
+            background: linear-gradient(135deg, var(--charcoal), var(--midnight-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cool-grey);
+            font-size: 0.875rem;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">BE</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Custom Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-balance-scale"></i>
+                <span>B</span>enedict
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#social">Connect</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Animated Particles -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- Gradient Orbs -->
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+
+        <div class="hero-content">
+            <p class="hero-subtitle">Welcome to my digital space</p>
+            <h1 class="hero-title">
+                <span class="line">Law Student.</span>
+                <span class="line highlight">Creative Mind.</span>
+                <span class="line">Brand Builder.</span>
+            </h1>
+            <p class="hero-description">
+                Navigating the intersection of law, creativity, and entrepreneurship. 
+                Building brands that resonate and stories that inspire.
+            </p>
+            <div class="hero-cta">
+                <a href="#skills" class="btn btn-primary">
+                    Explore My Work <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#social" class="btn btn-secondary">
+                    Let's Connect <i class="fas fa-handshake"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">Get To Know Me</p>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            
+            <div class="about-grid">
+                <!-- EDITABLE: Profile Image -->
+                <!-- INSTRUCTION: Replace the src below with your image path -->
+                <div class="about-image">
+                    <div class="image-glow"></div>
+                    <div class="image-frame">
+                        <img src="https://via.placeholder.com/600x800/1e293b/22d3ee?text=Your+Photo+Here" 
+                             alt="Benedict Ekpeakhena">
+                        <!-- PLACEHOLDER TEXT: Remove this div when you add your image -->
+                        <div class="img-placeholder" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: var(--charcoal);">
+                            <div>
+                                <i class="fas fa-user" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                                <p>Upload your photo here<br>(600x800 recommended)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-content">
+                    <h3 class="about-headline">
+                        Bridging <span>Law</span> and <span>Creativity</span>
+                    </h3>
+                    <p class="about-text">
+                        <!-- EDITABLE: Bio Text -->
+                        I'm Benedict Ekpeakhena, a law student with a passion for creative expression 
+                        and brand development. My journey is defined by the pursuit of excellence in 
+                        legal studies while nurturing my creative instincts through drawing, writing, 
+                        and graphic design.<br><br>
+                        
+                        As the founder of my own brand, I understand the power of storytelling and 
+                        visual identity. I believe in creating work that not only meets professional 
+                        standards but also carries artistic integrity and emotional resonance.
+                    </p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years Drawing</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Years Writing</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Brand Owned</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">What I Do</p>
+                <h2 class="section-title">My Skills & Passions</h2>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Skill Card 1: Drawing -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <h3 class="skill-title">Drawing</h3>
+                    <!-- EDITABLE: Drawing Image -->
+                    <div class="skill-image">
+                        <img src="https://via.placeholder.com/400x150/1e293b/22d3ee?text=Your+Artwork" 
+                             alt="Drawing Sample">
+                        <div class="img-placeholder" style="position: absolute; inset: 0;">
+                            <i class="fas fa-image" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Visual storytelling through traditional and digital mediums. Creating 
+                        illustrations that capture emotion and imagination.
+                    </p>
+                    <a href="#" class="skill-link" onclick="showComingSoon(event)">
+                        View Gallery <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Skill Card 2: Writing -->
+                <!-- EDITABLE: Webnovel Link - Change href below -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <h3 class="skill-title">Writing</h3>
+                    <!-- EDITABLE: Writing/Book Image -->
+                    <div class="skill-image">
+                        <img src="https://via.placeholder.com/400x150/1e293b/22d3ee?text=Veiled+Sin+Cover" 
+                             alt="Veiled Sin">
+                        <div class="img-placeholder" style="position: absolute; inset: 0;">
+                            <i class="fas fa-book" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Author of "Veiled Sin" - a webnovel that explores deep narratives 
+                        and complex characters. Crafting stories that captivate readers.
+                    </p>
+                    <!-- EDITABLE LINK: Replace href with your webnovel URL -->
+                    <a href="https://www.webnovel.com/book/veiled-sin" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="skill-link writing-link">
+                        Read Veiled Sin <i class="fas fa-book-open"></i>
+                    </a>
+                </div>
+
+                <!-- Skill Card 3: Graphic Design -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="skill-title">Graphic Design</h3>
+                    <!-- EDITABLE: Design Image -->
+                    <div class="skill-image">
+                        <img src="https://via.placeholder.com/400x150/1e293b/22d3ee?text=Design+Portfolio" 
+                             alt="Graphic Design">
+                        <div class="img-placeholder" style="position: absolute; inset: 0;">
+                            <i class="fas fa-layer-group" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Creating visual identities, marketing materials, and digital assets 
+                        that communicate brand values effectively.
+                    </p>
+                    <a href="#" class="skill-link" onclick="showComingSoon(event)">
+                        See Designs <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Skill Card 4: Law Student -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="skill-title">Law Student</h3>
+                    <!-- EDITABLE: Law/Moot Image -->
+                    <div class="skill-image">
+                        <img src="https://via.placeholder.com/400x150/1e293b/22d3ee?text=Moot+Court" 
+                             alt="Law School">
+                        <div class="img-placeholder" style="position: absolute; inset: 0;">
+                            <i class="fas fa-university" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Pursuing legal excellence with focus on [Your Specialization]. 
+                        Participating in moot courts and legal research.
+                    </p>
+                    <a href="#" class="skill-link" onclick="showComingSoon(event)">
+                        Academic Profile <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Skill Card 5: Brand Ownership -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="skill-title">Brand Ownership</h3>
+                    <!-- EDITABLE: Brand Logo/Image -->
+                    <div class="skill-image">
+                        <img src="https://via.placeholder.com/400x150/1e293b/22d3ee?text=Your+Brand" 
+                             alt="Brand">
+                        <div class="img-placeholder" style="position: absolute; inset: 0;">
+                            <i class="fas fa-crown" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Founder and creative director. Building a brand that merges legal 
+                        precision with creative innovation.
+                    </p>
+                    <a href="#" class="skill-link" onclick="showComingSoon(event)">
+                        Visit Brand <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social" id="social">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">Let's Connect</p>
+                <h2 class="section-title">Find Me Online</h2>
+            </div>
+
+            <div class="social-grid">
+                <!-- LinkedIn -->
+                <!-- EDITABLE: LinkedIn URL -->
+                <div class="social-card linkedin">
+                    <div class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <h3 class="social-name">LinkedIn</h3>
+                    <span class="social-handle">Professional Network</span>
+                    <a href="https://www.linkedin.com/in/benedict-ekpeakhena-9945783a1?utm_source=share_via&utm_content=profile&utm_medium=member_android" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="social-link">
+                        Connect <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- TikTok -->
+                <!-- EDITABLE: 4 TikTok Slots -->
+                <div class="social-card tiktok">
+                    <div class="social-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3 class="social-name">TikTok</h3>
+                    <span class="social-handle">@yourusername</span>
+                    <div class="tiktok-slots">
+                        <!-- EDITABLE: Replace @slot1, @slot2, etc with your TikTok usernames -->
+                        <div class="tiktok-slot">@slot1</div>
+                        <div class="tiktok-slot">@slot2</div>
+                        <div class="tiktok-slot">@slot3</div>
+                        <div class="tiktok-slot">@slot4</div>
+                    </div>
+                    <a href="#" class="social-link" style="margin-top: 1rem;">
+                        Follow <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- WhatsApp -->
+                <!-- EDITABLE: WhatsApp Number -->
+                <div class="social-card whatsapp">
+                    <div class="social-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="social-name">WhatsApp</h3>
+                    <span class="social-handle">Direct Message</span>
+                    <a href="https://wa.me/2349067654328" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="social-link">
+                        Chat Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Instagram -->
+                <!-- EDITABLE: Instagram URL -->
+                <div class="social-card instagram">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3 class="social-name">Instagram</h3>
+                    <span class="social-handle">@yourusername</span>
+                    <!-- EDITABLE: Replace # with your Instagram URL -->
+                    <a href="#" class="social-link">
+                        Follow <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Facebook -->
+                <!-- EDITABLE: Facebook URL -->
+                <div class="social-card facebook">
+                    <div class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3 class="social-name">Facebook</h3>
+                    <span class="social-handle">Your Name</span>
+                    <!-- EDITABLE: Replace # with your Facebook URL -->
+                    <a href="#" class="social-link">
+                        Connect <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span>B</span>enedict Ekpeakhena
+            </div>
+            <p class="footer-text">Law Student • Creative • Brand Builder</p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#social">Connect</a>
+            </div>
+            <p class="copyright">
+                &copy; 2024 Benedict Ekpeakhena. All rights reserved. <br>
+                <small>Designed with <i class="fas fa-heart" style="color: var(--soft-cyan);"></i> and code</small>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        /* ============================================
+           BENEDICT EKPEAKHENA PORTFOLIO SCRIPTS
+           ============================================ */
+
+        // Remove loader when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2000);
+        });
+
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+
+            // Navbar background on scroll
+            const navbar = document.getElementById('navbar');
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Back to top button visibility
+            const backToTop = document.getElementById('backToTop');
+            if (scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Custom Cursor Glow Effect
+        const cursorGlow = document.getElementById('cursorGlow');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Smooth cursor follow animation
+        function animateCursor() {
+            const dx = mouseX - cursorX;
+            const dy = mouseY - cursorY;
+            
+            cursorX += dx * 0.1;
+            cursorY += dy * 0.1;
+            
+            cursorGlow.style.left = cursorX - 10 + 'px';
+            cursorGlow.style.top = cursorY - 10 + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Generate Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random positioning and animation
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.section-header, .about-image, .about-content, .skill-card, .social-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Stagger animation for skill cards
+        const skillCards = document.querySelectorAll('.skill-card');
+        skillCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Stagger animation for social cards
+        const socialCards = document.querySelectorAll('.social-card');
+        socialCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Back to Top Function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            // Simple alert for mobile - can be expanded to full mobile menu
+            alert('Mobile menu - Add navigation links here or expand this function for full mobile menu overlay');
+        }
+
+        // Coming Soon Alert for placeholder links
+        function showComingSoon(event) {
+            event.preventDefault();
+            alert('Coming Soon! This section is under development.');
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to gradient orbs
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const orbs = document.querySelectorAll('.gradient-orb');
+            
+            orbs.forEach((orb, index) => {
+                const speed = 0.5 + (index * 0.2);
+                orb.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Typing effect for hero subtitle (optional enhancement)
+        const subtitle = document.querySelector('.hero-subtitle');
+        const originalText = subtitle.textContent;
+        subtitle.textContent = '';
+        
+        let charIndex = 0;
+        function typeWriter() {
+            if (charIndex < originalText.length) {
+                subtitle.textContent += originalText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        
+        // Start typing effect after loader
+        setTimeout(typeWriter, 2500);
+    </script>
+</body>
+</html>
